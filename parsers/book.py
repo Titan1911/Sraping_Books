@@ -43,3 +43,8 @@ class BookParser:
         price_link = self.parent.select_one(locator).string
         return float(price_link.strip('£'))
 
+    @property
+    def link(self):
+        locator = BookLocator.LINK
+        link_link = self.parent.select_one(locator)
+        return link_link.attrs['href']
