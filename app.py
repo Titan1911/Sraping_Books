@@ -2,13 +2,13 @@ import requests
 
 from pages.book_page import BookPage
 
+
 page_content = requests.get('http://books.toscrape.com/').content
 page = BookPage(page_content)
 books_list = page.books
 
-
-for n in range(2,51):
-    page_content = requests.get(f'http://books.toscrape.com/catalogue/page-{n}.html').content
+for page_num in range(2, page.page_count):
+    page_content = requests.get(f'http://books.toscrape.com/catalogue/page-{page_num}.html').content
     page = BookPage(page_content)
 
     books_list.extend(page.books)
