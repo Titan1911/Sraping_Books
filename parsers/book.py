@@ -14,7 +14,7 @@ class BookParser:
         self.parent = parent
 
     def __repr__(self):
-        return f'Book Name : {self.title}   Price : {self.price}    Rating : {self.rating} star rating'
+        return f'Book Name : {self.title}   Price : {self.price}    Rating : {self.rating} star rating    Status : {self.availability}'
 
     
     @property
@@ -35,7 +35,10 @@ class BookParser:
     @property
     def availability(self):
         locator = BookLocator.AVAILABILITY
-        return self.parent.select_one(locator)
+        availability_link = self.parent.select_one(locator)
+        for string in availability_link.stripped_strings: # very very very important, can be used if a tag if a tag has more than one child.
+            status = string
+        return status
 
     @property
     def price(self):
